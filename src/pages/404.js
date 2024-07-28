@@ -1,10 +1,35 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import notFounds from './../lotties/Animation - 1722179121360.json' 
+import { useLottie } from 'lottie-react';
 
 export default function NotFound() {
+    // const options = {
+    //   animationData: notFounds,
+    //   loop: true
+    // };
+
+    // const { View } = useLottie(options);
+
+    // const containerStyle = {
+    //   width: '600px',
+    // };
+
+    // const lottieStyle = {
+    //   width: '100%',
+    //   height: '100%',
+    // };
+
     const navigate = useNavigate()
   return (
     <main >
+      {/* <section style={containerStyle}>
+        <div style={{lottieStyle}}>
+          {
+            View
+          }
+        </div>
+      </section> */}
         <div className="p-5 text-center rounded-3">
           <div>
             <img src='https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png' 
