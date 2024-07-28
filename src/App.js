@@ -10,6 +10,9 @@ import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Outlet, Route, Routes } from 'react-router-dom';
+import Profile from './pages/Profile';
+import Pricing from './pages/Pricing';
+
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
           <Route path='/create' element={<ProductForm edit={false} />} />
           <Route path='/edit' element={<ProductForm edit={true} />} />
           <Route path='/datatable' element={<Dashboard />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/pricing' element={<Pricing />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />

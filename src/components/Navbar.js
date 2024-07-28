@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { logout } from '../redux/actions/authActions'
+import { fetchProfile } from '../redux/actions/profileAction'
 
 // shortcut: rfc
 export default function Navbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const {profile} = useSelector(state => state.profReducer)
   const {isLogin} = useSelector(state => state.authReducer)
+  const {auth} = useSelector(state => state.authReducer)
+
+  useEffect(() => {
+    dispatch(fetchProfile(isLogin ? auth.access_token : ""))
+  }, [])
+
   return (
     <header className="bg-white sticky-top">
       <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-4 border-bottom">
@@ -24,19 +32,8 @@ export default function Navbar() {
           <NavLink to="/datatable" className={({isActive}) => isActive ? "nav-link px-2 active link-secondary" : "nav-link px-2"}>DataTable</NavLink>
           <NavLink to="/about-us" className={({isActive}) => isActive ? "nav-link px-2 active link-secondary" : "nav-link px-2"}>About</NavLink>
         </ul>
-        <NavLink 
-            className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-            } 
-            to={"/profile"}>
-            <img 
-              src={isLogin ? "https://eduport.webestica.com/assets/images/avatar/01.jpg" : "https://eduport.webestica.com/assets/images/avatar/01.jpg"}
-              alt="" 
-              width={40} 
-              className="rounded-circle mx-3 my-2" />
-        </NavLink>
-
-        <div className="col-md-3 text-end me-5">
+      
+        <div className="col-md-5 text-end">
           {/* <button 
             type="button" 
             onClick={() => navigate("/create")}
@@ -52,6 +49,21 @@ export default function Navbar() {
             }
           </button>
         </div>
+
+        <div className='me-5'>
+        <NavLink 
+            className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+            } 
+            to={"/profile"}>
+            <img 
+              src={isLogin ? profile.avatar : "https://i.pinimg.com/originals/de/6e/8d/de6e8d53598eecfb6a2d86919b267791.png"}
+              alt="" 
+              width={40} 
+              className="rounded-circle mx-3 my-2" />
+        </NavLink>
+        </div>
+
       </div>
     </header>
   )
