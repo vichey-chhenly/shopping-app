@@ -47,6 +47,8 @@ function Login(props){
           // navigate("/")
           if (!isLogin){
             setError("Incorrect Username or Password")
+          }else{
+            setError("")
           }
         })
     }
