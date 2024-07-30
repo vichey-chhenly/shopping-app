@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { logout } from '../redux/actions/authActions'
 import { fetchProfile } from '../redux/actions/profileAction'
+import secureLocalStorage from 'react-secure-storage'
 
 // shortcut: rfc
 export default function Navbar() {
@@ -13,6 +14,7 @@ export default function Navbar() {
   const {auth} = useSelector(state => state.authReducer)
 
   useEffect(() => {
+    const auth = secureLocalStorage.getItem("auth")
     dispatch(fetchProfile(isLogin ? auth.access_token : ""))
   }, [])
 
