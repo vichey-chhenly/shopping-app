@@ -19,13 +19,13 @@ export const loginUser = (user) => {
                     type: actionTypes.LOGIN_SUCESS,
                     payload: resp
                 })
-                return Promise.resolve()
+                return Promise.resolve("Login Success")
             }else{
                 dispatch({
                     type: actionTypes.LOGIN_FAILED,
                     payload: resp.data
                 })
-                return Promise.resolve()
+                return Promise.resolve("Login Failed")
             }
         })
         return Promise.resolve()
